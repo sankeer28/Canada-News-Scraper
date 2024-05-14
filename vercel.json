@@ -1,0 +1,14 @@
+{
+    "functions": {
+      "api": {
+        "handler": "app.app"
+      }
+    },
+    "rewrites": [
+      {
+        "source": "/(.*)",
+        "destination": "/api/:1"
+      }
+    ]
+  }
+  
