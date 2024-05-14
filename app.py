@@ -40,7 +40,7 @@ def scrape_news(source):
 
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
     selected_source = None
     if request.method == 'POST':
@@ -49,6 +49,7 @@ def index():
         return render_template('index.html', news=news, selected_source=selected_source)
     else:
         return render_template('index.html', news=[], selected_source=selected_source)
+
 
 
 
