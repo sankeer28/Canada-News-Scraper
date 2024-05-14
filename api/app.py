@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 from hyperlink import URL
 
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__)
 
 def print_link(title, url):
     url = URL.from_text(url)
@@ -38,7 +38,9 @@ def scrape_news(source):
 
     return news_list
 
-@app.route('/', methods=['GET', 'POST'])
+
+
+@app.route('/')
 def index():
     selected_source = None
     if request.method == 'POST':
@@ -48,6 +50,7 @@ def index():
     else:
         return render_template('index.html', news=[], selected_source=selected_source)
 
+
+
 if __name__ == '__main__':
-    from waitress import serve
-    serve(app, host="0.0.0.0", port=8080)
+    app.run(debug=True)
