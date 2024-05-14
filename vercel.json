@@ -1,13 +1,15 @@
 {
-    "functions": {
-      "api": {
-        "handler": "app.app"
-      }
-    },
-    "rewrites": [
+    "version": 2,
+    "builds": [
       {
-        "source": "/(.*)",
-        "destination": "/api/:1"
+        "src": "./app.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/"
       }
     ]
   }
