@@ -3,7 +3,7 @@ Flask application allows users to scrape news articles from different sources su
 ### Prerequisites
 - Python 3
 - pip
-
+## [Live Demo](https://canada-news-scraper.onrender.com/)
 
 ## Dependencies
 Install requirements
