@@ -20,6 +20,7 @@ def scrape_news(source):
         soup = BeautifulSoup(response.text, 'html.parser')
 
     news_list = []
+    encountered_titles = set()  
 
     if source == "CTV News":
         for story in soup.find_all('a', class_='c-list__item__link'):
@@ -27,16 +28,21 @@ def scrape_news(source):
             link = story.get('href')
             if not link.startswith('https:'):
                 link = base_url + link
-            news_list.append((title, link))
+            if title not in encountered_titles:
+                encountered_titles.add(title)
+                news_list.append((title, link))
     else:
         for story in soup.find_all('h2', class_='teaserTitle'):
             title = story.text.strip()
             link = story.find('a')['href']
             if not link.startswith('http'):
                 link = base_url + link
-            news_list.append((title, link))
+            if title not in encountered_titles:
+                encountered_titles.add(title)
+                news_list.append((title, link))
 
     return news_list
+
 
 
 
