@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 from hyperlink import URL
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 def print_link(title, url):
     url = URL.from_text(url)
@@ -38,8 +38,6 @@ def scrape_news(source):
 
     return news_list
 
-
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     selected_source = None
@@ -50,7 +48,8 @@ def index():
     else:
         return render_template('index.html', news=[], selected_source=selected_source)
 
-
-
+# Vercel looks for an `app` object in `main.py`
+# So, we expose our Flask `app` under `main.py`
 if __name__ == '__main__':
-    app.run(debug=True)
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8080)
