@@ -1,2 +1,18 @@
 # Canada-News-Scraper
-Webscrapes Canadian news sites to show top stories
+Flask application allows users to scrape news articles from different sources such as CP24 and CTV News.
+### Prerequisites
+- Python 3
+- pip
+
+
+## Dependencies
+Install requirements
+``` pip install -r requirements.txt ```
+### Run
+run using ``` flask run ```
+
+## Built With
+- [Flask](https://flask.palletsprojects.com/) 
+- [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/) 
+- [Requests](https://docs.python-requests.org/en/latest/) 
+
