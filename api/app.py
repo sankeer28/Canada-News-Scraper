@@ -48,8 +48,6 @@ def index():
     else:
         return render_template('index.html', news=[], selected_source=selected_source)
 
-# Vercel looks for an `app` object in `main.py`
-# So, we expose our Flask `app` under `main.py`
 if __name__ == '__main__':
     from waitress import serve
     serve(app, host="0.0.0.0", port=8080)
