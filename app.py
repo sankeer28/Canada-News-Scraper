@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 import requests
 from bs4 import BeautifulSoup
 from hyperlink import URL
+import os
 
 app = Flask(__name__)
 
@@ -43,8 +44,13 @@ def scrape_news(source):
 
     return news_list
 
+@app.route('/static/<path:path>')
+def send_static(path):
+    return send_from_directory('static', path)
 
-
+@app.route('/<path:path>')
+def send_html(path):
+    return send_from_directory('templates', path)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -56,8 +62,5 @@ def index():
     else:
         return render_template('index.html', news=[], selected_source=selected_source)
 
-
-
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run()
